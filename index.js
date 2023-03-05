@@ -6,7 +6,7 @@ const rangeFrequency = document.getElementById("rangeFrequency");
 const buttonOn = document.getElementById("buttonOn");
 const buttonStop = document.getElementById("buttonStop");
 
-let oscNode = new OscillatorNode(audioCtx, { type: 'sawtooth', frequency: 442 });
+let oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: 442 });
 // let oscNode2 = new OscillatorNode(audioCtx, { type: 'sawtooth', frequency: 500 });
 
 let gainNode = new GainNode(audioCtx, { gain: 0.1 });
@@ -31,7 +31,7 @@ buttonStop.addEventListener("click", function () {
   oscNode.stop();
   // oscNode2.stop();
   // OscillatorNodeオブジェクトを再生成
-  oscNode = new OscillatorNode(audioCtx, { type: 'sawtooth', frequency: 442 });
+  oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: 442 });
   // oscNode2 = new OscillatorNode(audioCtx, { type: 'sawtooth', frequency: 500 });
 });
 
