@@ -1,0 +1,23 @@
+.contents {
+  width: 100%;
+  /* 高さの指定。vhはブラウザの表示域を基準にする単位 */
+  height: 100vh;
+
+  /* 中央揃えのた目のコード */
+  display: grid;
+  place-items: center;
+}
+
+.outer {
+  background-color: lightgray;
+  width: 200px;
+  height: 200px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* 高さの指定。inherit=親要素を受け継ぐ。この場合200px */
+  height: inherit;
+}
