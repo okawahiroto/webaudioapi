@@ -4,39 +4,56 @@ const audioCtx = new AudioContext();
 
 const rangeFrequency = document.getElementById("rangeFrequency");
 const buttonOn = document.getElementById("buttonOn");
-const buttonStop = document.getElementById("buttonStop");
+const buttonOff = document.getElementById("buttonOff");
+const buttonChange = document.getElementById("buttonChange");
 
-let oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: 442 });
-// let oscNode2 = new OscillatorNode(audioCtx, { type: 'sawtooth', frequency: 500 });
+console.log(rangeFrequency.value);
+
+let oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: rangeFrequency.value });
 
 let gainNode = new GainNode(audioCtx, { gain: 0.1 });
 let gainNode2 = new GainNode(audioCtx, { gain: 0.1 });
 
+buttonOff.disabled = true;
+
 //Onボタンクリック時
 buttonOn.addEventListener("click", function () {
-  console.log("buttonOn clicked");
+  console.log("On");
+  console.log(rangeFrequency.value);
+
   oscNode.connect(gainNode);
   gainNode.connect(audioCtx.destination);
-  // oscNode2.connect(gainNode2);
-  // gainNode2.connect(audioCtx.destination);
   oscNode.start();
-  // oscNode2.start();
+
+  buttonOn.disabled = true;
+  buttonOff.disabled = false;
+  rangeFrequency.disabled = true;
 });
 
 //Offボタンクリック時
-buttonStop.addEventListener("click", function () {
-  console.log("buttonOff clicked");
+buttonOff.addEventListener("click", function () {
+  console.log("Off");
+
   oscNode.connect(gainNode);
   gainNode.connect(audioCtx.destination);
   oscNode.stop();
-  // oscNode2.stop();
-  // OscillatorNodeオブジェクトを再生成
-  oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: 442 });
-  // oscNode2 = new OscillatorNode(audioCtx, { type: 'sawtooth', frequency: 500 });
+
+  oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: rangeFrequency.value });
+
+  buttonOn.disabled = false;
+  buttonOff.disabled = true;
+  rangeFrequency.disabled = false;
 });
 
 // range変更時の値取得
 rangeFrequency.addEventListener('input', inputChange);
 function inputChange() {
   console.log(rangeFrequency.value);
+  oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: rangeFrequency.value });
 };
+
+// buttonChange.addEventListener("click", function() {
+//   console.log("buttonChange clicked");
+//   oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: rangeFrequency.value });
+//   console.log(rangeFrequency.value);
+// })
