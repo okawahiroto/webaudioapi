@@ -4,6 +4,7 @@ const audioCtx = new AudioContext();
 
 const rangeFrequency = document.getElementById("rangeFrequency");
 const buttonOn = document.getElementById("buttonOn");
+const buttonAdd = document.getElementById("buttonAdd");
 const buttonOff = document.getElementById("buttonOff");
 const buttonChange = document.getElementById("buttonChange");
 
@@ -52,8 +53,8 @@ function inputChange() {
   oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: rangeFrequency.value });
 };
 
-// buttonChange.addEventListener("click", function() {
-//   console.log("buttonChange clicked");
-//   oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: rangeFrequency.value });
-//   console.log(rangeFrequency.value);
-// })
+buttonAdd.addEventListener("click", function() {
+  console.log("Add");
+  // oscNode = new OscillatorNode(audioCtx, { type: 'sine', frequency: rangeFrequency.value });
+  // console.log(rangeFrequency.value);
+});
