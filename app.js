@@ -65,22 +65,22 @@ const oscillator01 = audioCtx.createOscillator();
 const oscillator02 = audioCtx.createOscillator();
 const oscillator03 = audioCtx.createOscillator();
 
-// オシレーターの設定
-
-
 // ゲインノードの設定
 gainNode.gain.value = 0.1;
 
-// 各オシレーターを出力先に接続して、再生開始
+// 出力先に接続して、再生開始(gainNodeは音量を調整するオブジェクト)
 gainNode.connect(audioCtx.destination);
-
 
 //Onボタンクリック時
 buttonOn.addEventListener("click", function () {
   console.log("On");
   console.log("frequency01:" + frequency01);
+
+  // オシレーターの設定
   oscillator01.frequency.value = frequency01;
   oscillator01.type = "sine";
+
+  // 各オシレーターを出力先に接続して、再生開始
   oscillator01.connect(gainNode);
   oscillator01.start();
 });
@@ -104,7 +104,7 @@ buttonFifth.addEventListener("click", function() {
   oscillator03.start();
 });
 
-//Offボタンクリック時
+//Offボタンクリック時(リロードしてる。今後、改修する)
 buttonOff.addEventListener("click", function () {
   console.log("Off");
   location.reload()
