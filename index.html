@@ -10,10 +10,27 @@
 </head>
 <body>
   <div class="contents">
+
     <div class="outer">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioKey" id="radioMajor" value="radioMinor" checked>
+            <label class="form-check-label" for="radio1">長調</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioKey" id="radioMinor" value="radioMinor">
+            <label class="form-check-label" for="radio2">短調</label>
+          </div>
+        </div>
+      </div>
+
       <div class="buttons">
         <input type="button" value="On" id="buttonOn" class="btn btn-primary">
-        <input type="button" value="Add" id="buttonAdd" class="btn btn-info">
+        <input type="button" value="third" id="buttonThird" class="btn btn-info">
+        <input type="button" value="fifth" id="buttonFifth" class="btn btn-info">
         <input type="button" value="Off" id="buttonOff" class="btn btn-secondary">
       </div>
       <input type="range" id="rangeFrequency" value="440" min="0" max="880" step="1" class="form-range">
