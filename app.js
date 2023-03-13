@@ -38,6 +38,28 @@ function keyCheck(event) {
   }
 };
 
+function getSelectedOption() {
+  var options = document.getElementsByName("exampleRadios");
+  var selectedOption = [];
+
+  for (var i = 0; i < options.length; i++) {
+    if (options[i].checked) {
+      selectedOption.push(options[i].value);
+    }
+  }
+
+  return selectedOption;
+}
+
+var options = document.getElementsByName("options");
+
+for (var i = 0; i < options.length; i++) {
+  options[i].addEventListener("click", function() {
+    var selected = getSelectedOption();
+    console.log(selected); // 選択されたラジオボタンの値が格納された配列が表示される
+  });
+};
+
 // 長調・短調が変わると和音(周波数)を計算し直す。
 function keyChange() {
   frequency02 = rootFrequency * third;
