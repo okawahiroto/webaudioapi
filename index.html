@@ -12,7 +12,8 @@
   <div class="contents">
 
     <div class="outer">
-      <div class="row">
+      <!-- 調整のラジオボタン　Bootstrapを用いて、等間隔に配置 -->
+      <!-- <div class="row">
         <div class="col-6">
           <div class="form-check">
             <input class="form-check-input" type="radio" name="radioKey" id="radioMajor" value="radioMinor" checked>
@@ -25,83 +26,32 @@
             <label class="form-check-label" for="radio2">短調</label>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="row">
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio1" value="option1">
-            <label class="form-check-label" for="radio1">C</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio2" value="option2">
-            <label class="form-check-label" for="radio2">C#</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio3" value="option3">
-            <label class="form-check-label" for="radio3">D</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio4" value="option4">
-            <label class="form-check-label" for="radio4">D#</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio5" value="option5">
-            <label class="form-check-label" for="radio5">E</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio6" value="option6">
-            <label class="form-check-label" for="radio6">F</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio7" value="option7">
-            <label class="form-check-label" for="radio7">F#</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio8" value="option8">
-            <label class="form-check-label" for="radio8">G</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio9" value="option9">
-            <label class="form-check-label" for="radio9">G#</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio10" value="option9" checked>
-            <label class="form-check-label" for="radio9">A</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio11" value="option9">
-            <label class="form-check-label" for="radio9">Bb</label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="radio12" value="option9">
-            <label class="form-check-label" for="radio9">B</label>
-          </div>
-        </div>
-      </div>
-      
+      <form>
+        <input type="radio" id="radioMajor" name="key" value="keyMajor" checked>
+        <label for="red">長調</label>
+
+        <input type="radio" id="radioMinor" name="key" value="keyMinor">
+        <label for="green">短調</label>
+    </form>
+    <!-- brで位置調整。後で直す -->
+    <br>
+
+    <form>
+        <input type="radio" id="C" name="note" value="C">
+        <label for="C">ド</label>
+
+        <input type="radio" id="F" name="note" value="F">
+        <label for="F">ファ</label>
+
+        <input type="radio" id="A" name="note" value="A" checked>
+        <label for="A">ラ</label>
+
+        <input type="radio" id="Bb" name="note" value="Bb">
+        <label for="A">シb</label>
+    </form>
+
       <div class="buttons">
         <input type="button" value="On" id="buttonOn" class="btn btn-primary">
         <input type="button" value="third" id="buttonThird" class="btn btn-info">
