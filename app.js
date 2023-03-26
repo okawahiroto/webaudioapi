@@ -4,19 +4,22 @@ const rangeFrequency = document.getElementById("rangeFrequency");
 const radioMajor = document.getElementById("radioMajor");
 const radioMinor = document.getElementById("radioMinor");
 
-const buttonOn = document.getElementById("buttonOn");
+const buttonRoot = document.getElementById("buttonRoot");
 const buttonThird = document.getElementById("buttonThird");
 const buttonFifth = document.getElementById("buttonFifth");
 const buttonOff = document.getElementById("buttonOff");
-const buttonChange = document.getElementById("buttonChange");
+
+let rootOn = false;
+let thirdOn = false;
+let fifthOn = false;
 
 let selectedKey = "keyMajor";
 let selectedNote = "A";
 
-// ChatGPTのコード。3つの周波数の配列を準備、calculateFrequencies関数で調性と根音に基づき、3つの周波数を配列で返し(代入し)ている。
+// ChatGPT 3つの周波数の配列を準備、calculateFrequencies関数で調性と根音に基づき、3つの周波数を配列で返し(代入し)ている。
 let [frequency01, frequency02, frequency03] = calculateFrequencies(selectedKey, selectedNote);
 
-// 初期値を設定する方法。自分だとこうする。ChatGPTのようなコードを書けるようになりたい。
+// 自分のコード
 // let [frequency01, frequency02, frequency03] = [440, 550, 660];
 
 console.log(selectedKey + ':' + selectedNote);
@@ -56,12 +59,23 @@ function calculateFrequencies(key, note) {
 // 調性・根音変更時の処理
 function updateFrequencies() {
   console.log(`選択された調性は${selectedKey}です。`);
-  console.log(`選択された音は${selectedNote}です。`);
+  console.log(`選択された根音は${selectedNote}です。`);
   const frequencies = calculateFrequencies(selectedKey, selectedNote);
   frequency01 = frequencies[0];
   frequency02 = frequencies[1];
   frequency03 = frequencies[2];
   console.log(`frequency: ${frequency01}, ${frequency02}, ${frequency03}`);
+
+  if (rootOn) {
+    resetButtonRoot();
+  }
+  if (thirdOn) {
+    resetButtonThird();
+  }
+  if (fifthOn) {
+    resetButtonFifth();
+  }
+
 }
 
 // 調性を選んだとき
@@ -84,20 +98,20 @@ for (const radio of radioNotes) {
   });
 }
 
-// range変更時の値取得
-rangeFrequency.addEventListener('input', inputChange);
-function inputChange() {
-  rootFrequency = rangeFrequency.value;
-  frequency01 = rangeFrequency.value;
-  console.log('frequency01:' + frequency01);
-};
+// range変更時の値取得。今後、音量やピッチの変更などに利用するかも。
+// rangeFrequency.addEventListener('input', inputChange);
+// function inputChange() {
+//   rootFrequency = rangeFrequency.value;
+//   frequency01 = rangeFrequency.value;
+//   console.log('frequency01:' + frequency01);
+// };
 
 // オシレーターを生成
 let audioCtx = new AudioContext();
 const gainNode = audioCtx.createGain();
-const oscillator01 = audioCtx.createOscillator();
-const oscillator02 = audioCtx.createOscillator();
-const oscillator03 = audioCtx.createOscillator();
+let oscillator01 = audioCtx.createOscillator();
+let oscillator02 = audioCtx.createOscillator();
+let oscillator03 = audioCtx.createOscillator();
 
 // ゲインノードの設定
 gainNode.gain.value = 0.1;
@@ -105,41 +119,89 @@ gainNode.gain.value = 0.1;
 // 出力先に接続して、再生開始(gainNodeは音量を調整するオブジェクト)
 gainNode.connect(audioCtx.destination);
 
-//Onボタンクリック時
-buttonOn.addEventListener("click", function () {
-  console.log("On");
-  console.log("frequency01:" + frequency01);
+// ボタンクリック時の処理
+buttonRoot.addEventListener("click", function () {
+  console.log("Root");
+  rootOn = !rootOn;
+  if (rootOn) {
+    oscillator01.frequency.value = frequency01;
+    oscillator01.type = "sine";
+    oscillator01.connect(gainNode);
+    oscillator01.start();
+    buttonRoot.classList.remove("btn-secondary");
+    buttonRoot.classList.add("btn-danger");
+    console.log(rootOn);
 
-  // オシレーターの設定
-  oscillator01.frequency.value = frequency01;
-  oscillator01.type = "sine";
-
-  // 各オシレーターを出力先に接続して、再生開始
-  oscillator01.connect(gainNode);
-  oscillator01.start();
+  } else {
+    resetButtonRoot();
+  }
 });
 
-buttonThird.addEventListener("click", function() {
+buttonThird.addEventListener("click", function () {
   console.log("Third");
-  console.log("frequency02:" + frequency02);
-  oscillator02.frequency.value = frequency02;
-  oscillator02.type = "sine";
-  oscillator02.connect(gainNode);
-  oscillator02.start();
+  thirdOn = !thirdOn;
+  if (thirdOn) {
+    oscillator02.frequency.value = frequency02;
+    oscillator02.type = "sine";
+    oscillator02.connect(gainNode);
+    oscillator02.start();
+    buttonThird.classList.remove("btn-secondary");
+    buttonThird.classList.add("btn-danger");
+  } else {
+    resetButtonThird();
+  }
 });
 
-buttonFifth.addEventListener("click", function() {
+buttonFifth.addEventListener("click", function () {
   console.log("Fifth");
-  console.log("frequency03:" + frequency03);
-
-  oscillator03.frequency.value = frequency03;
-  oscillator03.type = "sine";
-  oscillator03.connect(gainNode);
-  oscillator03.start();
+  fifthOn = !fifthOn;
+  if (fifthOn) {
+    oscillator03.frequency.value = frequency03;
+    oscillator03.type = "sine";
+    oscillator03.connect(gainNode);
+    oscillator03.start();
+    buttonFifth.classList.remove("btn-secondary");
+    buttonFifth.classList.add("btn-danger");
+  } else {
+    resetButtonFifth();
+  }
 });
 
 //Offボタンクリック時(リロードしてる。今後、改修する)
-buttonOff.addEventListener("click", function () {
+buttonOff.addEventListener("click", function() {
   console.log("Off");
-  location.reload()
+  if (rootOn) {
+    resetButtonRoot();
+  }
+  if (thirdOn) {
+    resetButtonThird();
+  }
+  if (fifthOn) {
+    resetButtonFifth();
+  }
 });
+
+// ボタン初期化
+function resetButtonRoot() {
+  rootOn = false;
+  oscillator01.stop();
+  buttonRoot.classList.remove("btn-danger");
+  buttonRoot.classList.add("btn-secondary");
+  oscillator01 = audioCtx.createOscillator();
+}
+
+function resetButtonThird() {
+  thirdOn = false;
+  oscillator02.stop();
+  buttonThird.classList.remove("btn-danger");
+  buttonThird.classList.add("btn-secondary");
+  oscillator02 = audioCtx.createOscillator();
+}
+
+function resetButtonFifth() {
+  fifthOn = false;
+  oscillator03.stop();
+  buttonFifth.classList.remove("btn-danger");
+  buttonFifth.classList.add("btn-secondary");
+  oscillator03 = audioCtx.createOscillator();
+}
