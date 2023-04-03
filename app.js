@@ -10,6 +10,8 @@ const buttonThird = document.getElementById("buttonThird");
 const buttonFifth = document.getElementById("buttonFifth");
 const buttonOff = document.getElementById("buttonOff");
 
+let tuningFrequencyValue = tuningFrequency.value;
+
 let rootOn = false;
 let thirdOn = false;
 let fifthOn = false;
@@ -27,8 +29,9 @@ console.log(tuningFrequency.value);
 console.log(selectedKey + ':' + selectedNote);
 
 tuningFrequency.addEventListener("input", () => {
-  const tuningFrequencyValue = tuningFrequency.value;
+  tuningFrequencyValue = tuningFrequency.value
   console.log(tuningFrequencyValue);
+  updateFrequencies();
 });
 
 // 各オシレーターの周波数を計算
@@ -44,19 +47,23 @@ function calculateFrequencies(key, note) {
   let frequency01, frequency02, frequency03;
   switch(note) {
     case "A":
-      frequency01 = 440;
+      frequency01 = tuningFrequencyValue;
       break;
     case "C":
-      frequency01 = 261.63;
+      frequency01 = tuningFrequencyValue * Math.pow(2, -9/12);
+      console.log(frequency01);
+      // frequency01 = 261.63;
       break;
     case "F":
-      frequency01 = 349.23;
+      frequency01 = tuningFrequencyValue * Math.pow(2, -4/12);
+      console.log(frequency01);
       break;
     case "Bb":
-      frequency01 = 466.16;
+      frequency01 = tuningFrequencyValue * Math.pow(2, 1/12);
+      console.log(frequency01);
       break;
     default:
-      frequency01 = 440;
+      frequency01 = tuningFrequencyValue;
   }
   frequency02 = frequency01 * third;
   frequency03 = frequency01 * fifth;
@@ -67,6 +74,7 @@ function calculateFrequencies(key, note) {
 function updateFrequencies() {
   console.log(`選択された調性は${selectedKey}です。`);
   console.log(`選択された根音は${selectedNote}です。`);
+  console.log(`tuningFrequencyValue: ${tuningFrequencyValue}`);
   const frequencies = calculateFrequencies(selectedKey, selectedNote);
   frequency01 = frequencies[0];
   frequency02 = frequencies[1];
@@ -129,6 +137,9 @@ gainNode.connect(audioCtx.destination);
 // ボタンクリック時の処理
 buttonRoot.addEventListener("click", function () {
   console.log("Root");
+  console.log(`選択された調性は${selectedKey}です。`);
+  console.log(`選択された根音は${selectedNote}です。`);
+  console.log(`tuningFrequencyValue: ${tuningFrequencyValue}`);
   rootOn = !rootOn;
   if (rootOn) {
     oscillator01.frequency.value = frequency01;
