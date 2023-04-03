@@ -1,5 +1,6 @@
 console.log("app.js loaded");
 
+const tuningFrequency = document.getElementById("tuningFrequency");
 const rangeFrequency = document.getElementById("rangeFrequency");
 const radioMajor = document.getElementById("radioMajor");
 const radioMinor = document.getElementById("radioMinor");
@@ -22,7 +23,13 @@ let [frequency01, frequency02, frequency03] = calculateFrequencies(selectedKey, 
 // 自分のコード
 // let [frequency01, frequency02, frequency03] = [440, 550, 660];
 
+console.log(tuningFrequency.value);
 console.log(selectedKey + ':' + selectedNote);
+
+tuningFrequency.addEventListener("input", () => {
+  const tuningFrequencyValue = tuningFrequency.value;
+  console.log(tuningFrequencyValue);
+});
 
 // 各オシレーターの周波数を計算
 function calculateFrequencies(key, note) {
