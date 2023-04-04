@@ -9,15 +9,17 @@
 }
 
 .outer {
+  border: 1px solid #ccc;
   background-color: #f5f5f5;
   width: 400px;
-  height: 200px;
 }
 
 .buttons {
+  background-color: #f5f5f5;
+
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   /* 高さの指定。inherit=親要素を受け継ぐ。この場合200px */
-  height: inherit;
+  height: 100px;
 }
