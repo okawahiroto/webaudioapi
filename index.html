@@ -28,8 +28,21 @@
         </div>
       </div> -->
 
-      <!-- 20230402_周波数を入力するフォームを追加する。 -->
-      <input type="number" class="number" id="tuningFrequency" value="440" min="438" max="445">
+      <select class="form-select" id="tuningFrequency" aria-label="基準ピッチの選択" >
+        <option value="220">220</option>
+        <option value="438">438</option>
+        <option value="439">439</option>
+        <option value="440">440</option>
+        <option value="441">441</option>
+        <option value="442" selected>442</option>
+        <option value="443">443</option>
+        <option value="444">444</option>
+        <option value="445">445</option>
+        <option value="880">880</option>
+      </select>
+
+    <!-- brで位置調整。後で直す -->
+    <br>
 
       <form>
         <input type="radio" id="radioMajor" name="key" value="keyMajor" checked>
@@ -38,6 +51,7 @@
         <input type="radio" id="radioMinor" name="key" value="keyMinor">
         <label for="radioMinor">短調</label>
     </form>
+
     <!-- brで位置調整。後で直す -->
     <br>
 

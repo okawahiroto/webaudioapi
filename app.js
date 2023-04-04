@@ -28,7 +28,7 @@ let [frequency01, frequency02, frequency03] = calculateFrequencies(selectedKey, 
 console.log(tuningFrequency.value);
 console.log(selectedKey + ':' + selectedNote);
 
-tuningFrequency.addEventListener("input", () => {
+tuningFrequency.addEventListener("change", () => {
   tuningFrequencyValue = tuningFrequency.value
   console.log(tuningFrequencyValue);
   updateFrequencies();
