@@ -54,12 +54,28 @@ function calculateFrequencies(key, note) {
       console.log(frequency01);
       // frequency01 = 261.63;
       break;
+    case "D":
+      frequency01 = tuningFrequencyValue * Math.pow(2, -7/12);
+      console.log(frequency01);
+      break;
+    case "E":
+        frequency01 = tuningFrequencyValue * Math.pow(2, -5/12);
+        console.log(frequency01);
+        break;
     case "F":
       frequency01 = tuningFrequencyValue * Math.pow(2, -4/12);
       console.log(frequency01);
       break;
+    case "G":
+      frequency01 = tuningFrequencyValue * Math.pow(2, -2/12);
+      console.log(frequency01);
+      break;
     case "Bb":
       frequency01 = tuningFrequencyValue * Math.pow(2, 1/12);
+      console.log(frequency01);
+      break;
+    case "H":
+      frequency01 = tuningFrequencyValue * Math.pow(2, 2/12);
       console.log(frequency01);
       break;
     default:
