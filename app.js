@@ -37,12 +37,33 @@ tuningFrequency.addEventListener("change", () => {
 // 各オシレーターの周波数を計算
 function calculateFrequencies(key, note) {
   let third, fifth;
-  if (key === "keyMajor") {
-    third = 5/4;
-    fifth = 3/2;
-  } else {
-    third = 6/5;
-    fifth = 3/2;
+  // if (key === "keyMajor") {
+  //   third = 5/4;
+  //   fifth = 3/2;
+  // } else {
+  //   third = 6/5;
+  //   fifth = 3/2;
+  // }
+  switch(key) {
+    case "keyMajor":
+      third = 5/4;
+      fifth = 3/2;
+      break;
+      case "keyMinor":
+        third = 6/5;
+        fifth = 3/2;
+        break;
+      case "keyMajorET":
+        third = Math.pow(2, 4/12);
+        fifth = Math.pow(2, 7/12);
+      break;
+      case "keyMinorET":
+        third = Math.pow(2, 3/12);
+        fifth = Math.pow(2, 7/12);
+      break;
+      default:
+      third = 5/4;
+      fifth = 3/2;
   }
   let frequency01, frequency02, frequency03;
   switch(note) {
