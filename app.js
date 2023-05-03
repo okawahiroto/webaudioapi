@@ -70,7 +70,15 @@ function calculateFrequencies(key, note) {
     case "A":
       frequency01 = tuningFrequencyValue;
       break;
+    case "Ab":
+    frequency01 = tuningFrequencyValue * Math.pow(2, -1/12);
+    break;
     case "C":
+      frequency01 = tuningFrequencyValue * Math.pow(2, -9/12);
+      console.log(frequency01);
+      // frequency01 = 261.63;
+      break;
+    case "c":
       frequency01 = tuningFrequencyValue * Math.pow(2, -9/12);
       console.log(frequency01);
       // frequency01 = 261.63;
@@ -79,19 +87,31 @@ function calculateFrequencies(key, note) {
       frequency01 = tuningFrequencyValue * Math.pow(2, -7/12);
       console.log(frequency01);
       break;
+    case "d":
+      frequency01 = tuningFrequencyValue * Math.pow(2, -7/12);
+      console.log(frequency01);
+      break;
     case "Eb":
-        frequency01 = tuningFrequencyValue * Math.pow(2, -6/12);
-        console.log(frequency01);
-        break;
+      frequency01 = tuningFrequencyValue * Math.pow(2, -6/12);
+      console.log(frequency01);
+      break;
     case "E":
-        frequency01 = tuningFrequencyValue * Math.pow(2, -5/12);
-        console.log(frequency01);
+      frequency01 = tuningFrequencyValue * Math.pow(2, -5/12);
+      console.log(frequency01);
         break;
     case "F":
       frequency01 = tuningFrequencyValue * Math.pow(2, -4/12);
       console.log(frequency01);
       break;
+    case "f":
+      frequency01 = tuningFrequencyValue * Math.pow(2, -4/12);
+      console.log(frequency01);
+      break;
     case "G":
+      frequency01 = tuningFrequencyValue * Math.pow(2, -2/12);
+      console.log(frequency01);
+      break;
+    case "g":
       frequency01 = tuningFrequencyValue * Math.pow(2, -2/12);
       console.log(frequency01);
       break;
